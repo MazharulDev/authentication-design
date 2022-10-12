@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,6 +23,7 @@ const SignUpPage = () => {
         const userPassword = password.current.value;
         await createUserWithEmailAndPassword(userEmail, userPassword)
         await updateProfile({ displayName: userName })
+        localStorage.setItem("email", userEmail)
     }
     if (emailUser) {
         toast.success("Signup successfull")
